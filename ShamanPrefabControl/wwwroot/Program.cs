@@ -99,7 +99,7 @@ namespace ShamanPrefabControl
             //path of file
 
             //var path = @"/Users/mihailgorsenin/SPCTest/.git/info/sparse-checkout";
-            var path = @"/app/ShamanPrefabControl/SPCTest/.git/info/sparse-checkout";
+            var path = @".git/info/sparse-checkout";
             using (StreamWriter sw = new StreamWriter(path))
             {
                 sw.Write("/1/");
