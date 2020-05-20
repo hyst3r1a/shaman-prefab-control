@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="libGit2Sharp" Version="0.26.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Bitbucket.Net" Version="2.1.11" />
+    <PackageReference Include="Owin.Security.Providers.Bitbucket" Version="2.26.0" />
+    <PackageReference Include="Cake.Curl" Version="4.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="MyTest.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\Program.cs" />
+    <Content Remove="wwwroot\MyTest.sh" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="wwwroot\Program.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\MyTest.sh" />
+  </ItemGroup>
+</Project>

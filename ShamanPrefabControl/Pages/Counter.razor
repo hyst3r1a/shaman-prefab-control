@@ -1,0 +1,45 @@
+﻿@page "/counter"
+@using Bitbucket.Net;
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+
+<ul>
+    @if (currentFiles != null)
+    {
+    @foreach (string a in currentFiles)
+    {
+        <li>@a.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()</li>
+    }
+    }
+</ul>
+
+
+
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="EnumerateFiles">ShowFiles</button>
+
+@code {
+
+    private int currentCount = 0;
+    private string[] currentFiles;
+    private string[] separators = { "/", "\\" };
+
+    private async void IncrementCount()
+    {
+        currentCount++;
+
+
+        Program.ShallowClone();
+    }
+
+
+    private void EnumerateFiles()
+    {
+        currentFiles = Program.Enumerate();
+
+    }
+}
