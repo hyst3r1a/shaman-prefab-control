@@ -81,7 +81,7 @@ namespace ShamanPrefabControl
 
             startInfo.FileName = "git";
             startInfo.Arguments = "init";
-            startInfo.WorkingDirectory = commonPath;
+            //startInfo.WorkingDirectory = commonPath;
             Process.Start(startInfo);
             debugString = "run git init";
 
