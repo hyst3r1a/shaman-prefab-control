@@ -67,12 +67,10 @@ namespace ShamanPrefabControl
             }
             System.Threading.Thread.Sleep(10000);
             debugString = "ShallowClone started.";
-           // Process.Start(cdCommand, uncommonPath);
-            debugString = "cd success";
+           
             Process.Start(mkdirCommand, dirName);
             debugString = "mkdir run";
-            Process.Start(cdCommand, dirName);
-            debugString = "cd success 2";
+          
 
 
            
