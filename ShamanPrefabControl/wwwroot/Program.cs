@@ -65,9 +65,9 @@ namespace ShamanPrefabControl
                 debugString += line;
                 Console.WriteLine("Pi");
             }
-
+            System.Threading.Thread.Sleep(10000);
             debugString = "ShallowClone started.";
-            Process.Start(cdCommand, uncommonPath);
+           // Process.Start(cdCommand, uncommonPath);
             debugString = "cd success";
             Process.Start(mkdirCommand, dirName);
             debugString = "mkdir run";
@@ -79,7 +79,7 @@ namespace ShamanPrefabControl
 
             
 
-            System.Threading.Thread.Sleep(10000);
+           
 
             startInfo.FileName = "git";
             startInfo.Arguments = "init";
