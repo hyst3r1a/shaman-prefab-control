@@ -102,7 +102,7 @@ namespace ShamanPrefabControl
             debugString = "SPARSE!";
             //path of file
 
-            var path = @"tmp/SPCTest/.git/info/sparse-checkout";
+            var path = @"/tmp/SPCTest/.git/info/sparse-checkout";
             //path = @".git/info/sparse-checkout";
             using (StreamWriter sw = new StreamWriter(path))
             {
