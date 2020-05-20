@@ -16,11 +16,13 @@ namespace ShamanPrefabControl
 {
     public class Program
     {
+        public static string debugString = String.Empty;
 
         public static string[] Enumerate()
         {
             //string[] allfiles = Directory.GetFiles("/Users/mihailgorsenin/SPCTest", "*.html", SearchOption.AllDirectories);
             string[] allfiles = Directory.GetFiles("/app/SPCTest", "*.html", SearchOption.AllDirectories);
+            debugString = "enumeration succesful";
             return allfiles;
         }
 
@@ -46,28 +48,34 @@ namespace ShamanPrefabControl
 
             string echo = "echo";
             string folder = "\"/1/items/\" \"\">> .git/info/sparse-checkout\"\"";
-      
 
+            debugString = "ShallowClone started.";
             Process.Start(cdCommand, uncommonPath);
+            debugString = "cd success";
             Process.Start(mkdirCommand, dirName);
+            debugString = "mkdir run";
             Process.Start(cdCommand, dirName);
+            debugString = "cd success";
 
-           
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "git";
             startInfo.Arguments = "init";
             startInfo.WorkingDirectory = commonPath;
             Process.Start(startInfo);
+            debugString = "run git init";
 
             startInfo.Arguments = gitRemoteCommand;
             Process.Start(startInfo);
+            debugString = "run git remote add";
             startInfo.Arguments = gitSparseConfig;
             Process.Start(startInfo);
+            debugString = "add strings to git config";
 
             startInfo.FileName = "echo";
             startInfo.Arguments = folder;
             Process.Start(echo, folder);
+            debugString = "SPARSE!";
             //path of file
 
             //var path = @"/Users/mihailgorsenin/SPCTest/.git/info/sparse-checkout";
