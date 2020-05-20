@@ -12,7 +12,7 @@
     {
         @foreach (string a in currentFiles)
         {
-            <li>@a.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()</li>
+            <li>@a/*.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()*/</li>
         }
     }
 </ul>
