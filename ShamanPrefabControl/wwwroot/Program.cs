@@ -65,7 +65,7 @@ namespace ShamanPrefabControl
                 debugString += line;
                 Console.WriteLine("Pi");
             }
-            System.Threading.Thread.Sleep(10000);
+            
             debugString = "ShallowClone started.";
            
             Process.Start(mkdirCommand, dirName);
@@ -99,7 +99,7 @@ namespace ShamanPrefabControl
             //path of file
 
             //var path = @"/Users/mihailgorsenin/SPCTest/.git/info/sparse-checkout";
-            var path = @"/app/ShamanPrefabControl/SPCTest.git/info/sparse-checkout";
+            var path = @"/app/ShamanPrefabControl/SPCTest/.git/info/sparse-checkout";
             using (StreamWriter sw = new StreamWriter(path))
             {
                 sw.Write("/1/");
