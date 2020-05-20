@@ -12,7 +12,7 @@
     {
         @foreach (string a in currentFiles)
         {
-            <li>@a/*.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()*/</li>
+            <li>@a</li>
         }
     }
 </ul>
@@ -23,7 +23,7 @@
 
 
 @code {
-
+    /*.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()*/
     private int currentCount = 0;
     private string[] currentFiles;
     private string[] separators = { "/", "\\" };
