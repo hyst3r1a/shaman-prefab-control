@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Bitbucket.Net;
 using System.Diagnostics;
 
+
 namespace ShamanPrefabControl
 {
     public class Program
@@ -28,6 +29,8 @@ namespace ShamanPrefabControl
 
         public static void ShallowClone()
         {
+            
+            
             string mkdirCommand = "mkdir";
             string dirName = "SPCTest";
 
@@ -103,9 +106,10 @@ namespace ShamanPrefabControl
      
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+               .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
                    
                 });
     }
