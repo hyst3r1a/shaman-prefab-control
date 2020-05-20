@@ -52,20 +52,7 @@ namespace ShamanPrefabControl
             string echo = "echo";
             string folder = "\"/1/items/\" \"\">> .git/info/sparse-checkout\"\"";
 
-
-            
-
-            debugString = "ShallowClone started.";
-            Process.Start(cdCommand, uncommonPath);
-            debugString = "cd success";
-            Process.Start(mkdirCommand, dirName);
-            debugString = "mkdir run";
-            Process.Start(cdCommand, dirName);
-            debugString = "cd success 2";
-
-
             ProcessStartInfo startInfo = new ProcessStartInfo();
-
             startInfo.FileName = "ls";
             startInfo.Arguments = "/app";
             startInfo.UseShellExecute = false;
@@ -78,6 +65,19 @@ namespace ShamanPrefabControl
                 debugString += line;
                 Console.WriteLine("Pi");
             }
+
+            debugString = "ShallowClone started.";
+            Process.Start(cdCommand, uncommonPath);
+            debugString = "cd success";
+            Process.Start(mkdirCommand, dirName);
+            debugString = "mkdir run";
+            Process.Start(cdCommand, dirName);
+            debugString = "cd success 2";
+
+
+           
+
+            
 
             System.Threading.Thread.Sleep(10000);
 
