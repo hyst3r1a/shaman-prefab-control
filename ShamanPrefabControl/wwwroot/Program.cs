@@ -22,7 +22,7 @@ namespace ShamanPrefabControl
         public static string[] Enumerate()
         {
             //string[] allfiles = Directory.GetFiles("/Users/mihailgorsenin/SPCTest", "*.html", SearchOption.AllDirectories);
-            string[] allfiles = Directory.GetFiles("/app/ShamanPrefabControl/SPCTest", "*.html", SearchOption.AllDirectories);
+            string[] allfiles = Directory.GetFiles("/tmp/SPCTest", "*.html", SearchOption.AllDirectories);
             debugString = "enumeration succesful";
             return allfiles;
         }
@@ -32,14 +32,14 @@ namespace ShamanPrefabControl
             
             
             string mkdirCommand = "mkdir";
-            string dirName = "SPCTest";
+            string dirName = "/tmp/SPCTest";
 
             string cdCommand = "cd";
             //string commonPath = "/Users/mihailgorsenin/SPCTest";
             //string uncommonPath = "/Users/mihailgorsenin/";
 
-            string commonPath = "/app/ShamanPrefabControl/SPCTest";
-            string uncommonPath = "/app/ShamanPrefabControl/";
+            string commonPath = "/tmp/SPCTest";
+            string uncommonPath = "/tmp/";
 
             string gitCommand = "git";
             string gitShallowCheckoutArgument = @"pull origin master";
@@ -54,7 +54,7 @@ namespace ShamanPrefabControl
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "ls";
-            startInfo.Arguments = "/app";
+            startInfo.Arguments = "/tmp";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.CreateNoWindow = true;
@@ -72,19 +72,20 @@ namespace ShamanPrefabControl
             debugString = "mkdir run";
 
 
-            var path = @"/app/sparse-checkout";
+            //var path = @"/app/sparse-checkout";
 
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.Write("/1/");
-            }
+            //using (StreamWriter sw = new StreamWriter(path))
+            //{
+            //    sw.Write("/1/");
+                
+            //}
 
 
 
 
             startInfo.FileName = "git";
             startInfo.Arguments = "init";
-            //startInfo.WorkingDirectory = commonPath;
+            startInfo.WorkingDirectory = commonPath;
             Process.Start(startInfo);
             debugString = "run git init";
 
@@ -101,8 +102,8 @@ namespace ShamanPrefabControl
             debugString = "SPARSE!";
             //path of file
 
-            //var path = @"/Users/mihailgorsenin/SPCTest/.git/info/sparse-checkout";
-            path = @".git/info/sparse-checkout";
+            var path = @"tmp/SPCTest/.git/info/sparse-checkout";
+            //path = @".git/info/sparse-checkout";
             using (StreamWriter sw = new StreamWriter(path))
             {
                 sw.Write("/1/");
