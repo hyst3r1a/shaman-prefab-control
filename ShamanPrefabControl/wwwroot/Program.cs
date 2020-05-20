@@ -19,7 +19,8 @@ namespace ShamanPrefabControl
 
         public static string[] Enumerate()
         {
-            string[] allfiles = Directory.GetFiles("/Users/mihailgorsenin/SPCTest", "*.html", SearchOption.AllDirectories);
+            //string[] allfiles = Directory.GetFiles("/Users/mihailgorsenin/SPCTest", "*.html", SearchOption.AllDirectories);
+            string[] allfiles = Directory.GetFiles("/app/SPCTest", "*.html", SearchOption.AllDirectories);
             return allfiles;
         }
 
@@ -29,8 +30,11 @@ namespace ShamanPrefabControl
             string dirName = "SPCTest";
 
             string cdCommand = "cd";
-            string commonPath = "/Users/mihailgorsenin/SPCTest";
-            string uncommonPath = "/Users/mihailgorsenin/";
+            //string commonPath = "/Users/mihailgorsenin/SPCTest";
+            //string uncommonPath = "/Users/mihailgorsenin/";
+
+            string commonPath = "/app/SPCTest";
+            string uncommonPath = "/app/";
 
             string gitCommand = "git";
             string gitShallowCheckoutArgument = @"pull origin master";
@@ -66,7 +70,8 @@ namespace ShamanPrefabControl
             Process.Start(echo, folder);
             //path of file
 
-            var path = @"/Users/mihailgorsenin/SPCTest/.git/info/sparse-checkout";
+            //var path = @"/Users/mihailgorsenin/SPCTest/.git/info/sparse-checkout";
+            var path = @"/app/SPCTest/.git/info/sparse-checkout";
             using (StreamWriter sw = new StreamWriter(path))
             {
                 sw.Write("/1/");

@@ -4,23 +4,23 @@
 <h1>Counter</h1>
 
 <p>Current count: @currentCount</p>
-
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="EnumerateFiles">ShowFiles</button>
 
 <ul>
     @if (currentFiles != null)
     {
-    @foreach (string a in currentFiles)
-    {
-        <li>@a.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()</li>
-    }
+        @foreach (string a in currentFiles)
+        {
+            <li>@a.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()</li>
+        }
     }
 </ul>
 
 
 
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-<button class="btn btn-primary" @onclick="EnumerateFiles">ShowFiles</button>
+
 
 @code {
 
