@@ -70,14 +70,17 @@ namespace ShamanPrefabControl
            
             Process.Start(mkdirCommand, dirName);
             debugString = "mkdir run";
-          
 
 
-           
+            var path = @"/app/sparse-checkout";
 
-            
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                sw.Write("/1/");
+            }
 
-           
+
+
 
             startInfo.FileName = "git";
             startInfo.Arguments = "init";
@@ -99,7 +102,7 @@ namespace ShamanPrefabControl
             //path of file
 
             //var path = @"/Users/mihailgorsenin/SPCTest/.git/info/sparse-checkout";
-            var path = @".git/info/sparse-checkout";
+            path = @".git/info/sparse-checkout";
             using (StreamWriter sw = new StreamWriter(path))
             {
                 sw.Write("/1/");
