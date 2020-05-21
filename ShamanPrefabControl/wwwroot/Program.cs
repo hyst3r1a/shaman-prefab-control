@@ -21,7 +21,7 @@ namespace ShamanPrefabControl
         public static List<String> Enumerate()
         {
             //string[] allfiles = Directory.GetFiles("/Users/mihailgorsenin/SPCTest", "*.html", SearchOption.AllDirectories);
-            string[] allfiles = Directory.GetFiles("/tmp/SPCTest", "*.prefabs", SearchOption.AllDirectories);
+            string[] allfiles = Directory.GetFiles("/tmp/SPCTest", "*.prefab", SearchOption.AllDirectories);
             debugString = "enumeration succesful";
             return allfiles.ToList();
         }
@@ -63,7 +63,7 @@ namespace ShamanPrefabControl
             {
                 var line = a.StandardOutput.ReadLine();
                 debugString += line;
-                Console.WriteLine("Pi");
+                Console.WriteLine(line);
             }
             
             debugString = "ShallowClone started.";
