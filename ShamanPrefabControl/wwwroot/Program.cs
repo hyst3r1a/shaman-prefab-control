@@ -41,6 +41,7 @@ namespace ShamanPrefabControl
             string uncommonPath = "/tmp/";
 
             string gitCommand = "git";
+            string gitCheckout = "checkout develop";
             string gitShallowCheckoutArgument = @"pull origin develop";
             string gitInitArgument = @"init";
             string gitRemoteCommand = @"remote add origin https://hyst3r1a:jnrMqqcGu7zabzW6EV2q@bitbucket.org/shaman_games/witchs-tales-1-mobile.git";
@@ -49,7 +50,7 @@ namespace ShamanPrefabControl
 
 
             string echo = "echo";
-            string folder = "\"/1/items/\" \"\">> .git/info/sparse-checkout\"\"";
+            string folder = "\"/Assets/Resources/Prefabs/\" \"\">> .git/info/sparse-checkout\"\"";
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "ls";
@@ -105,7 +106,7 @@ namespace ShamanPrefabControl
             //path = @".git/info/sparse-checkout";
             using (StreamWriter sw = new StreamWriter(path))
             {
-                sw.Write("/Assets/Resources/Prefabs/");
+                sw.Write("/Assets/Resources/Prefabs");
             }
 
             startInfo.FileName = gitCommand;
