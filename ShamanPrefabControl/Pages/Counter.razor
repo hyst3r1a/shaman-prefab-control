@@ -38,9 +38,9 @@
 
 
 @code {
-        /*.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()*/
+    /*.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()*/
     private int currentCount = 0;
-    private string[] currentFiles;
+    private string[] currentFiles = { "", "" };
     private string[] separators = { "/", "\\" };
     private List<Prefabs> prefabsList = new List<Prefabs>();
     private List<Prefabs> gitPrefabsList = new List<Prefabs>();
@@ -81,9 +81,16 @@
             finalList.AddRange(deletedPrefabs);
             finalList.AddRange(prefabsList.Except(deletedPrefabs).ToList());
 
+
             foreach (Prefabs a in db.Prefabs.ToList())
             {
                 db.Prefabs.Remove(a);
+            }
+            int i = 0;
+            foreach (Prefabs a in finalList)
+            {
+                a.Id = i;
+                i++;
             }
             db.Prefabs.AddRange(finalList);
             db.SaveChanges();
