@@ -7,8 +7,7 @@
 <button class="btn btn-primary" @onclick="EnumerateFiles">ShowFiles</button>
 <p>Current Debug Message: @Program.debugString</p>
 <ul class="list-group">
-    @if (currentFiles != null)
-    {
+    @if (currentFiles != null && currentFiles.Length > 0)
         @foreach (string a in currentFiles)
         {
             <li class="list-group-item">
@@ -19,7 +18,7 @@
     }
     else
     {
-        if (prefabsList != null)
+        if (prefabsList != null && prefabsList.Count > 0)
         {
             @foreach (Prefabs b in prefabsList)
             {
@@ -40,7 +39,7 @@
 @code {
     /*.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()*/
     private int currentCount = 0;
-    private string[] currentFiles = { "", "" };
+    private string[] currentFiles;
     private string[] separators = { "/", "\\" };
     private List<Prefabs> prefabsList = new List<Prefabs>();
     private List<Prefabs> gitPrefabsList = new List<Prefabs>();
