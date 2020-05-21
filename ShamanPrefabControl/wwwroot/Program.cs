@@ -18,12 +18,12 @@ namespace ShamanPrefabControl
     {
         public static string debugString = String.Empty;
 
-        public static string[] Enumerate()
+        public static List<String> Enumerate()
         {
             //string[] allfiles = Directory.GetFiles("/Users/mihailgorsenin/SPCTest", "*.html", SearchOption.AllDirectories);
             string[] allfiles = Directory.GetFiles("/tmp/SPCTest", "*.html", SearchOption.AllDirectories);
             debugString = "enumeration succesful";
-            return allfiles;
+            return allfiles.ToList();
         }
 
         public static void ShallowClone()
