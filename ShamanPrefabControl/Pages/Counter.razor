@@ -1,5 +1,4 @@
 ﻿@page "/counter"
-@using Bitbucket.Net;
 
 <h1>Counter</h1>
 
@@ -12,9 +11,23 @@
     {
         @foreach (string a in currentFiles)
         {
-            <li class="list-group-item">@a.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last();
+            <li class="list-group-item">
+                @a.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last();
+            <span class="badge badge-success badge-primary">New!</span>
+        </li>
+    }
+    }
+    else
+    {
+        if (prefabsList.Count > 0)
+        {
+            @foreach (Prefabs b in prefabsList)
+            {
+                <li class="list-group-item">
+                    @b.Name;
                 <span class="badge badge-success badge-primary">New!</span>
-                </li>
+            </li>
+        }
         }
     }
 </ul>
@@ -25,10 +38,13 @@
 
 
 @code {
-    /*.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()*/
+        /*.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last()*/
     private int currentCount = 0;
     private string[] currentFiles;
     private string[] separators = { "/", "\\" };
+    private List<Prefabs> prefabsList = new List<Prefabs>();
+    private List<Prefabs> gitPrefabsList = new List<Prefabs>();
+    private List<Prefabs> finalList = new List<Prefabs>();
 
     private async void IncrementCount()
     {
@@ -36,6 +52,43 @@
 
 
         Program.ShallowClone();
+
+        using (d905g2ke1a5qvmContext db = new d905g2ke1a5qvmContext())
+        {
+            prefabsList = db.Prefabs.ToList();
+
+
+
+            foreach (string a in currentFiles)
+            {
+                Prefabs newPref = new Prefabs();
+                newPref.Name = a;
+                gitPrefabsList.Add(newPref);
+            }
+
+            List<Prefabs> newPrefabs = gitPrefabsList.Except(prefabsList).ToList();
+            foreach (Prefabs a in newPrefabs)
+            {
+                a.Status = "New";
+            }
+            List<Prefabs> deletedPrefabs = prefabsList.Except(gitPrefabsList).ToList();
+            foreach (Prefabs a in deletedPrefabs)
+            {
+                a.Status = "Deleted";
+            }
+
+            finalList.AddRange(newPrefabs);
+            finalList.AddRange(deletedPrefabs);
+            finalList.AddRange(prefabsList.Except(deletedPrefabs).ToList());
+
+            foreach (Prefabs a in db.Prefabs.ToList())
+            {
+                db.Prefabs.Remove(a);
+            }
+            db.Prefabs.AddRange(finalList);
+            db.SaveChanges();
+        }
+
     }
 
 
