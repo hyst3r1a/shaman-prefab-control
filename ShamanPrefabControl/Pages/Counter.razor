@@ -23,7 +23,7 @@
             @foreach (Prefabs b in finalList)
             {
 <li class="list-group-item">
-    @b.Id + " " + b.Name;
+    @b.Id <br />@b.Name;
 
     @if (b.Status == "New")
     {
