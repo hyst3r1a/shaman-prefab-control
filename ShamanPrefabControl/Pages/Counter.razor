@@ -1,12 +1,13 @@
 ﻿@page "/counter"
 
-<h1>Counter</h1>
+<h1>Prefabs</h1>
 
-<p>Current count: @currentCount</p>
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-<button class="btn btn-primary" @onclick="EnumerateFiles">ShowFiles</button>
+
+<button class="btn btn-primary" @onclick="EnumerateFiles">Renew Git info</button>
+<br />
+<button class="btn btn-primary" @onclick="IncrementCount">Get Data From DB</button>
 <p>Current Debug Message: @Program.debugString</p>
-<p>Status: @statusString</p>
+<!--<p>Status: @statusString</p>-->
 <ul class="list-group">
     @if (currentFiles != null && currentFiles.Count < 0) { 
         @foreach (string a in currentFiles)
