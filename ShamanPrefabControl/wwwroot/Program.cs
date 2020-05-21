@@ -21,7 +21,7 @@ namespace ShamanPrefabControl
         public static List<String> Enumerate()
         {
             //string[] allfiles = Directory.GetFiles("/Users/mihailgorsenin/SPCTest", "*.html", SearchOption.AllDirectories);
-            string[] allfiles = Directory.GetFiles("/tmp/SPCTest", "*.html", SearchOption.AllDirectories);
+            string[] allfiles = Directory.GetFiles("/tmp/SPCTest", "*.prefabs", SearchOption.AllDirectories);
             debugString = "enumeration succesful";
             return allfiles.ToList();
         }
@@ -41,9 +41,9 @@ namespace ShamanPrefabControl
             string uncommonPath = "/tmp/";
 
             string gitCommand = "git";
-            string gitShallowCheckoutArgument = @"pull origin master";
+            string gitShallowCheckoutArgument = @"pull origin develop";
             string gitInitArgument = @"init";
-            string gitRemoteCommand = @"remote add origin https://github.com/hyst3r1a/sharplitedocs";
+            string gitRemoteCommand = @"remote add origin https://hyst3r1a:jnrMqqcGu7zabzW6EV2q@bitbucket.org/shaman_games/witchs-tales-1-mobile.git";
             string gitSparseConfig = @"config core.sparseCheckout true";
 
 
@@ -105,7 +105,7 @@ namespace ShamanPrefabControl
             //path = @".git/info/sparse-checkout";
             using (StreamWriter sw = new StreamWriter(path))
             {
-                sw.Write("/1/");
+                sw.Write("/Assets/Resources/Prefabs/");
             }
 
             startInfo.FileName = gitCommand;
