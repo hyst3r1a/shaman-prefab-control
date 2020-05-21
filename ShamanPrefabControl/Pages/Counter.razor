@@ -6,6 +6,7 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 <button class="btn btn-primary" @onclick="EnumerateFiles">ShowFiles</button>
 <p>Current Debug Message: @Program.debugString</p>
+<p>Status: @statusString</p>
 <ul class="list-group">
     @if (currentFiles != null && currentFiles.Count < 0) { 
         @foreach (string a in currentFiles)
@@ -60,6 +61,7 @@
     private List<Prefabs> prefabsList = new List<Prefabs>();
     private List<Prefabs> gitPrefabsList = new List<Prefabs>();
     private List<Prefabs> finalList = new List<Prefabs>();
+    private string statusString = String.Empty;
 
 
     private void UpdateState(string state, Prefabs pref)
@@ -78,7 +80,7 @@
         currentCount++;
 
 
-        Program.ShallowClone();
+        //Program.ShallowClone();
 
         using (d905g2ke1a5qvmContext db = new d905g2ke1a5qvmContext())
         {
@@ -133,6 +135,7 @@
             }
             db.Prefabs.AddRange(finalList);
             db.SaveChanges();
+            statusString = "DB changes saved. " + prefabsList.Count + " loaded from DB, " + gitPrefabsList.Count + " loaded from Git, " + newPrefabs.Count + " new prefabs sorted, " + deletedPrefabs.Count + " prefabs from DB not found in Git(Deleted), " + finalList.Count + "total.";
         }
 
         StateHasChanged();
@@ -141,7 +144,7 @@
 
     private void EnumerateFiles()
     {
-        currentFiles = Program.Enumerate();
-
+        // currentFiles = Program.Enumerate();
+        Program.ShallowClone();
     }
 }
