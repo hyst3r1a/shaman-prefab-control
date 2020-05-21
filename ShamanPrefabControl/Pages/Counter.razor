@@ -105,12 +105,12 @@
                 gitPrefabsList.Add(newPref);
             }
 
-            List<Prefabs> newPrefabs = gitPrefabsList.Except(prefabsList).ToList();
+            List<Prefabs> newPrefabs = gitPrefabsList.Except(prefabsList, new PrefabsComparer()).ToList();
             foreach (Prefabs a in newPrefabs)
             {
                 a.Status = "New";
             }
-            List<Prefabs> deletedPrefabs = prefabsList.Except(gitPrefabsList).ToList();
+            List<Prefabs> deletedPrefabs = prefabsList.Except(gitPrefabsList, new PrefabsComparer()).ToList();
             foreach (Prefabs a in deletedPrefabs)
             {
                 a.Status = "Deleted";
@@ -118,7 +118,7 @@
 
             finalList.AddRange(newPrefabs);
             finalList.AddRange(deletedPrefabs);
-            finalList.AddRange(prefabsList.Except(deletedPrefabs).ToList());
+            finalList.AddRange(prefabsList.Except(deletedPrefabs, new PrefabsComparer()).ToList());
 
 
             foreach (Prefabs a in db.Prefabs.ToList())
@@ -135,7 +135,7 @@
             }
             db.Prefabs.AddRange(finalList);
             db.SaveChanges();
-            statusString = "DB changes saved. " + prefabsList.Count + " loaded from DB, " + gitPrefabsList.Count + " loaded from Git, " + newPrefabs.Count + " new prefabs sorted, " + deletedPrefabs.Count + " prefabs from DB not found in Git(Deleted), " + finalList.Count + "total.";
+            statusString = "DB changes saved. " + prefabsList.Count + " loaded from DB, " + gitPrefabsList.Count + " loaded from Git, " + newPrefabs.Count + " new prefabs sorted, " + deletedPrefabs.Count + " prefabs from DB not found in Git(Deleted), " + finalList.Count + " total.";
         }
 
         StateHasChanged();
