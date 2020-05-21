@@ -23,11 +23,11 @@
             @foreach (Prefabs b in finalList)
             {
 <li class="list-group-item">
-    @b.Name;
+    @b.Id + " " + b.Name;
 
     @if (b.Status == "New")
     {
-        <span class="badge badge-success badge-success">New!</span><button class="btn btn-primary" @onclick="@(e => UpdateState("In Work", b))">Take into work!</button>
+        <span class="badge badge-success badge-success">New!</span><br /><button class="btn btn-primary btn-sm" @onclick="@(e => UpdateState("In Work", b))">Take into work!</button>
     }
     @if (b.Status == "Deleted")
     {
@@ -35,11 +35,11 @@
     }
     @if (b.Status == "In Work")
     {
-        <span class="badge badge-success badge-primary">In work!</span><button class="btn btn-primary" @onclick="@(e => UpdateState("Free", b))">Free!</button>
+        <span class="badge badge-success badge-primary">In work!</span><br /><button class="btn btn-primary btn-sm" @onclick="@(e => UpdateState("Free", b))">Free!</button>
     }
     @if (b.Status == "Free")
     {
-        <span class="badge badge-success badge-info">Free!</span><button class="btn btn-primary" @onclick="@(e => UpdateState("In Work", b))">Take into work!</button>
+        <span class="badge badge-success badge-info">Free!</span><br /><button class="btn btn-primary btn-sm" @onclick="@(e => UpdateState("In Work", b))">Take into work!</button>
     }
 </li>
         }
@@ -85,6 +85,15 @@
             prefabsList = db.Prefabs.ToList();
 
 
+            foreach(Prefabs a in prefabsList)
+            {
+                if(a.Status == "New")
+                {
+                    a.Status = "Free";
+                }
+            }
+
+            db.SaveChanges();
             currentFiles = Program.Enumerate();
             foreach (string a in currentFiles)
             {
