@@ -7,14 +7,14 @@
 <button class="btn btn-primary" @onclick="EnumerateFiles">ShowFiles</button>
 <p>Current Debug Message: @Program.debugString</p>
 <ul class="list-group">
-    @if (currentFiles != null && currentFiles.Length > 0)
+    @if (currentFiles != null && currentFiles.Length > 0) { 
         @foreach (string a in currentFiles)
         {
             <li class="list-group-item">
                 @a.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last();
             <span class="badge badge-success badge-primary">New!</span>
         </li>
-    }
+        }
     }
     else
     {
