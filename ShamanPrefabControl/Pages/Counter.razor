@@ -3,19 +3,21 @@
 <h1>Prefabs</h1>
 
 
-<button class="btn btn-primary" @onclick="EnumerateFiles">Renew Git info</button>
+<button class="btn btn-primary" @onclick="EnumerateFiles">Renew Git info</button><p>Сначала жмём сюда. Метод асинхронный но без возможности авэйта, поэтому ждём 10-15 секунд, если страница выдала ошибку - F5 и тыкаем снова - Хост очистил темп файлы</p>
 <br />
-<button class="btn btn-primary" @onclick="IncrementCount">Get Data From DB</button>
-<p>Current Debug Message: @Program.debugString</p>
-<!--<p>Status: @statusString</p>-->
+<br />
+<button class="btn btn-primary" @onclick="IncrementCount">Get Data From DB</button><p>Потом жмем сюда и ждем пару секунд - подгрузка и обновление списка префабов занимает некоторое время, т.к. халявная дино медленно сображает. Спонсор этого вечера - Хероку. Хероку - Зато Бесплатно!</p>
+<!--<p>Current Debug Message: @Program.debugString</p>-->
+<p>Status: @statusString</p>
 <ul class="list-group">
-    @if (currentFiles != null && currentFiles.Count < 0) { 
+    @if (currentFiles != null && currentFiles.Count < 0)
+    {
         @foreach (string a in currentFiles)
         {
             <li class="list-group-item">
                 @a.Split(separators, 100, StringSplitOptions.RemoveEmptyEntries).Last();
-            <span class="badge badge-success badge-primary">New!</span>
-        </li>
+                <span class="badge badge-success badge-primary">New!</span>
+            </li>
         }
     }
     else
@@ -24,27 +26,27 @@
         {
             @foreach (Prefabs b in finalList)
             {
-<li class="list-group-item">
-    @b.Id <br />@b.Name;
+                <li class="list-group-item">
+                    @b.Id <br />@b.Name;
 
-    @if (b.Status == "New")
-    {
-        <span class="badge badge-success badge-success">New!</span><br /><button class="btn btn-primary btn-sm" @onclick="@(e => UpdateState("In Work", b))">Take into work!</button>
-    }
-    @if (b.Status == "Deleted")
-    {
-        <span class="badge badge-success badge-danger">Deleted!</span>
-    }
-    @if (b.Status == "In Work")
-    {
-        <span class="badge badge-success badge-primary">In work!</span><br /><button class="btn btn-primary btn-sm" @onclick="@(e => UpdateState("Free", b))">Free!</button>
-    }
-    @if (b.Status == "Free")
-    {
-        <span class="badge badge-success badge-info">Free!</span><br /><button class="btn btn-primary btn-sm" @onclick="@(e => UpdateState("In Work", b))">Take into work!</button>
-    }
-</li>
-        }
+                    @if (b.Status == "New")
+                    {
+                        <span class="badge badge-success badge-success">New!</span><br /><button class="btn btn-primary btn-sm" @onclick="@(e => UpdateState("In Work", b))">Take into work!</button>
+                    }
+                    @if (b.Status == "Deleted")
+                    {
+                        <span class="badge badge-success badge-danger">Deleted!</span>
+                    }
+                    @if (b.Status == "In Work")
+                    {
+                        <span class="badge badge-success badge-primary">In work!</span><br /><button class="btn btn-primary btn-sm" @onclick="@(e => UpdateState("Free", b))">Free!</button>
+                    }
+                    @if (b.Status == "Free")
+                    {
+                        <span class="badge badge-success badge-info">Free!</span><br /><button class="btn btn-primary btn-sm" @onclick="@(e => UpdateState("In Work", b))">Take into work!</button>
+                    }
+                </li>
+            }
         }
     }
 </ul>
@@ -68,7 +70,7 @@
     private void UpdateState(string state, Prefabs pref)
     {
 
-        using(d905g2ke1a5qvmContext db = new d905g2ke1a5qvmContext())
+        using (d905g2ke1a5qvmContext db = new d905g2ke1a5qvmContext())
         {
             pref.Status = state;
             db.Prefabs.Update(pref);
@@ -88,9 +90,9 @@
             prefabsList = db.Prefabs.ToList();
 
 
-            foreach(Prefabs a in prefabsList)
+            foreach (Prefabs a in prefabsList)
             {
-                if(a.Status == "New")
+                if (a.Status == "New")
                 {
                     a.Status = "Free";
                 }
