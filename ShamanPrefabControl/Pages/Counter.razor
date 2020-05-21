@@ -84,8 +84,10 @@
             foreach (Prefabs a in db.Prefabs.ToList())
             {
                 db.Prefabs.Remove(a);
+                db.SaveChanges();
             }
             int i = 0;
+            db.SaveChanges();
             foreach (Prefabs a in finalList)
             {
                 a.Id = i;
