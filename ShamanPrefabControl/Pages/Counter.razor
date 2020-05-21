@@ -18,14 +18,30 @@
     }
     else
     {
-        if (prefabsList != null && prefabsList.Count > 0)
+        if (finalList != null && finalList.Count > 0)
         {
             @foreach (Prefabs b in prefabsList)
             {
-                <li class="list-group-item">
-                    @b.Name;
-                <span class="badge badge-success badge-primary">New!</span>
-            </li>
+<li class="list-group-item">
+    @b.Name;
+
+    @if (b.Status == "New")
+    {
+        <span class="badge badge-success badge-success">New!</span><button class="btn btn-primary" @onclick="@(e => UpdateState("In Work", b))">Take into work!</button>
+    }
+    @if (b.Status == "Deleted")
+    {
+        <span class="badge badge-success badge-danger">Deleted!</span>
+    }
+    @if (b.Status == "In Work")
+    {
+        <span class="badge badge-success badge-primary">In work!</span><button class="btn btn-primary" @onclick="@(e => UpdateState("Free", b))">Free!</button>
+    }
+    @if (b.Status == "Free")
+    {
+        <span class="badge badge-success badge-info">Free!</span><button class="btn btn-primary" @onclick="@(e => UpdateState("In Work", b))">Take into work!</button>
+    }
+</li>
         }
         }
     }
@@ -45,6 +61,18 @@
     private List<Prefabs> gitPrefabsList = new List<Prefabs>();
     private List<Prefabs> finalList = new List<Prefabs>();
 
+
+    private void UpdateState(string state, Prefabs pref)
+    {
+
+        using(d905g2ke1a5qvmContext db = new d905g2ke1a5qvmContext())
+        {
+            pref.Status = state;
+            db.Prefabs.Update(pref);
+            db.SaveChanges();
+        }
+
+    }
     private async void IncrementCount()
     {
         currentCount++;
